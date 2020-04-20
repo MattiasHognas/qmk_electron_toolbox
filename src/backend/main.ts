@@ -1,7 +1,8 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'path';
 import * as isDev from 'electron-is-dev';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+import { executeShell } from './helpers';
 
 let win: BrowserWindow | null = null;
 
@@ -10,7 +11,10 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: false,
+      contextIsolation: true,
+      enableRemoteModule: false,
+      preload: path.join(__dirname, 'preload.js')
     },
     autoHideMenuBar: true
   })
@@ -57,3 +61,32 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+ipcMain.on('test-request', (event, message) => {
+  const onDataCallback = function (chunk: any) {
+    dialog.showMessageBox({
+      title: 'Data',
+      type: 'info',
+      message: 'Data: \r\n' + chunk.toString()
+    });
+  }
+  const onErrorCallback = function (error: Error | any) {
+    dialog.showMessageBox({
+      title: 'Error',
+      type: 'warning',
+      message: 'Error occured in shell.\r\n' + error.toString()
+    });
+  }
+  const onCloseCallback = function (code: number) {
+    dialog.showMessageBox({
+      title: 'Closed',
+      type: 'info',
+      message: 'Closed shell.\r\n' + code.toString()
+    });
+    if (win !== null) {
+      event.sender.send('test-response', 'Yay');
+    }
+  }
+  event.sender.send('test-response', 'Main recieved message: ' + message);
+  executeShell('cmd', onDataCallback, onErrorCallback, onCloseCallback, ['ECHO hello']);
+})

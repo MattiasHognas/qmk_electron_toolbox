@@ -4,7 +4,7 @@
   "author": "Mattias Högnäs",
   "description": "qmk electron toolbox",
   "homepage": ".",
-  "main": "build/electron/main.js",
+  "main": "build/backend/main.js",
   "private": true,
   "dependencies": {
     "@types/electron-devtools-installer": "^2.2.0",
@@ -25,9 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "postinstall": "electron-builder install-app-deps",
-    "electron:dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
-    "electron:windev": "concurrently \"cross-env BROWSER=none && yarn start\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
-    "electron:build": "yarn build && tsc -p electron && electron-builder",
+    "electron:dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && tsc -p src/backend -w\" \"wait-on http://localhost:3000 && tsc -p src/backend && electron .\"",
+    "electron:windev": "concurrently \"cross-env BROWSER=none && yarn start\" \"wait-on http://localhost:3000 && tsc -p src/backend -w\" \"wait-on http://localhost:3000 && tsc -p src/backend && electron .\"",
+    "electron:build": "yarn build && tsc -p src/backend && electron-builder",
     "eject": "react-scripts eject"
   },
   "build": {

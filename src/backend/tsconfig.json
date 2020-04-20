@@ -2,9 +2,9 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "sourceMap": true,
+    "sourceMap": false,
     "strict": true,
-    "outDir": "../build",
+    "outDir": "../../build",
     "rootDir": "../",
     "noEmitOnError": true,
     "typeRoots": [
