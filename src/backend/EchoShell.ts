@@ -1,10 +1,16 @@
 import { spawn } from 'child_process';
-import { IShell } from './../types/IShell';
+import { Shell } from './../types/Shell';
 
-class Shell implements IShell {
-    execute(command: string, onData: (chunk: any) => void, onError: (error: Error | any) => void, onClose: (code: number) => void, args?: ReadonlyArray<string>) {
-        var child = spawn(command, args, {
-            shell: true
+class EchoShell implements Shell {
+    execute(
+        command: string,
+        onData: (chunk: object) => void,
+        onError: (error: Error | object) => void,
+        onClose: (code: number) => void,
+        args?: ReadonlyArray<string>,
+    ): void {
+        const child = spawn(command, args, {
+            shell: true,
         });
         child.on('error', (error) => {
             onError(error);
@@ -23,4 +29,4 @@ class Shell implements IShell {
     }
 }
 
-export const shell: IShell = new Shell();
+export const echoShell: Shell = new EchoShell();

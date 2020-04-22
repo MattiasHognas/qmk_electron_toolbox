@@ -1,7 +1,7 @@
-import { IBridge } from './types/IBridge'
+import { Bridge } from './types/Bridge';
 
 export declare global {
     interface Window {
-        api: IBridge;
+        api: Bridge;
     }
 }
