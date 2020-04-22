@@ -1,15 +1,9 @@
-import { IpcRenderer, ipcRenderer, contextBridge } from "electron";
-import { Bridge } from './../types/bridge';
-
-declare global {
-  interface Window {
-    ipcRenderer: IpcRenderer;
-  }
-}
+import { ipcRenderer, contextBridge } from "electron";
+import { IBridge } from '../types/IBridge';
 
 console.log('bridge loaded');
 
-const api: Bridge = {
+const api: IBridge = {
   sendTestRequest() {
     ipcRenderer.send('test-request');
   },

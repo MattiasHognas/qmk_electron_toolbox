@@ -2,7 +2,7 @@ import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'path';
 import * as isDev from 'electron-is-dev';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
-import { executeShell } from './helpers';
+import { shell } from './Shell';
 
 let win: BrowserWindow | null = null;
 
@@ -14,7 +14,7 @@ function createWindow() {
       nodeIntegration: false,
       contextIsolation: true,
       enableRemoteModule: false,
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'Preload.js')
     },
     autoHideMenuBar: true
   })
@@ -22,7 +22,6 @@ function createWindow() {
   if (isDev) {
     win.loadURL('http://localhost:3000/index.html');
   } else {
-    // 'build/index.html'
     win.loadURL(`file://${__dirname}/../index.html`);
   }
 
@@ -88,5 +87,5 @@ ipcMain.on('test-request', (event, message) => {
     }
   }
   event.sender.send('test-response', 'Main recieved message: ' + message);
-  executeShell('cmd', onDataCallback, onErrorCallback, onCloseCallback, ['ECHO hello']);
+  shell.execute('cmd', onDataCallback, onErrorCallback, onCloseCallback, ['ECHO hello']);
 })
