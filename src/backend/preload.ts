@@ -1,20 +1,18 @@
-import { ipcRenderer, contextBridge } from "electron";
-import { IBridge } from '../types/IBridge';
+import { ipcRenderer, contextBridge } from 'electron';
+import { Bridge } from '../types/Bridge';
 
 console.log('bridge loaded');
 
-const api: IBridge = {
-  sendTestRequest() {
-    ipcRenderer.send('test-request');
-  },
-  attachTestResponseListener(listener: (event: any, ...arg: any) => void) {
-    ipcRenderer.on('test-response', listener);
-  },
-  removeTestResponseListener() {
-    ipcRenderer.removeAllListeners('test-response');
-  }
+const api: Bridge = {
+    sendTestRequest() {
+        ipcRenderer.send('test-request');
+    },
+    attachTestResponseListener(listener: (event: Electron.IpcRendererEvent, ...arg: object[]) => void) {
+        ipcRenderer.on('test-response', listener);
+    },
+    removeTestResponseListener() {
+        ipcRenderer.removeAllListeners('test-response');
+    },
 };
 
-contextBridge.exposeInMainWorld(
-  'api', api
-);
+contextBridge.exposeInMainWorld('api', api);
