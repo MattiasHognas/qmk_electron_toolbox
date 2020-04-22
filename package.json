@@ -6,20 +6,6 @@
   "homepage": ".",
   "main": "build/backend/main.js",
   "private": true,
-  "dependencies": {
-    "@types/electron-devtools-installer": "^2.2.0",
-    "@types/jest": "25.2.1",
-    "@types/node": "13.13.0",
-    "@types/react": "16.9.34",
-    "@types/react-dom": "16.9.6",
-    "electron-devtools-installer": "^3.0.0",
-    "electron-is-dev": "^1.2.0",
-    "electron-reload": "^1.5.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typescript": "3.8.3"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -54,11 +40,31 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "@types/electron-devtools-installer": "^2.2.0",
+    "@types/jest": "25.2.1",
+    "@types/node": "13.13.0",
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "16.9.34",
+    "@types/react-dom": "16.9.6",
+    "@types/webfontloader": "^1.6.29",
+    "electron-devtools-installer": "^3.0.0",
+    "electron-is-dev": "^1.2.0",
+    "electron-reload": "^1.5.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-md": "^1.16.1",
+    "react-scripts": "3.4.1",
+    "typescript": "3.8.3",
+    "webfontloader": "^1.6.28"
+  },
   "devDependencies": {
     "concurrently": "^5.1.0",
     "cross-env": "^7.0.2",
     "electron": "^8.2.3",
     "electron-builder": "^22.5.1",
+    "node-sass": "^4.13.1",
     "wait-on": "^4.0.2"
   }
 }
