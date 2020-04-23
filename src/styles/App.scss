@@ -4,26 +4,9 @@
   text-align: center;
 }
 
-.app-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .app-header {
   background-color: #222;
+  color: $md-white-base;
   height: 150px;
   padding: 20px;
-
-  h2 {
-    color: $md-white-base;
-  }
 }
-
-.app-intro {
-  font-size: large;
-}
-
-// @keyframes App-logo-spin {
-//   from { transform: rotate(0deg); }
-//   to { transform: rotate(360deg); }
-// }

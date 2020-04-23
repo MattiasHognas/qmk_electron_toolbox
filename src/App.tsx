@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { AppProps } from './types/AppProps';
 import { AppState } from './types/AppState';
 import { Microcontroller } from './types/Microcontroller';
-import logo from './icon-128x128.png';
 import { Button, SelectField, FileUpload, TextField } from 'react-md';
 import './styles/App.scss';
 
@@ -57,9 +56,9 @@ export default class App extends PureComponent<AppProps, AppState> {
     render(): JSX.Element {
         return (
             <div className="app">
-                <header className="app-header">
-                    <img src={logo} className="app-logo" alt="logo" />
-                </header>
+                {/* <header className="app-header">
+                    <span>A logotype here</span>
+                </header> */}
                 <main>
                     <div>
                         <FileUpload
