@@ -8,16 +8,44 @@ import './styles/App.scss';
 // TODO: Move to service (Base list arch/OS)
 const OBJECT_ITEMS: Microcontroller[] = [
     {
-        label: 'Alps',
-        value: 'Alps',
+        label: 'at90usb1286',
+        value: 'at90usb1286',
     },
     {
-        label: 'Cherry',
-        value: 'Cherry',
+        label: 'at90usb1287',
+        value: 'at90usb1287',
     },
     {
-        label: 'Topre',
-        value: 'Topre',
+        label: 'at90usb646',
+        value: 'at90usb646',
+    },
+    {
+        label: 'at90usb647',
+        value: 'at90usb647',
+    },
+    {
+        label: 'atmega16u2',
+        value: 'atmega16u2',
+    },
+    {
+        label: 'atmega16u4',
+        value: 'atmega16u4',
+    },
+    {
+        label: 'atmega328p',
+        value: 'atmega328p',
+    },
+    {
+        label: 'atmega32a',
+        value: 'atmega32a',
+    },
+    {
+        label: 'atmega32u2',
+        value: 'atmega32u2',
+    },
+    {
+        label: 'atmega32u4',
+        value: 'atmega32u4',
     },
 ];
 
