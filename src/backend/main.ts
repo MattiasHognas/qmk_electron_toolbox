@@ -2,7 +2,7 @@ import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'path';
 import * as isDev from 'electron-is-dev';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
-import { echoShell } from './EchoShell';
+import { avrdudeShell } from './AvrdudeShell';
 
 let win: BrowserWindow | null = null;
 
@@ -88,5 +88,5 @@ ipcMain.on('test-request', (event, message) => {
         }
     };
     event.sender.send('test-response', 'Main recieved message: ' + message);
-    echoShell.execute('cmd', onDataCallback, onErrorCallback, onCloseCallback, ['ECHO hello']);
+    avrdudeShell.execute('externals/win/avrdude.exe', onDataCallback, onErrorCallback, onCloseCallback, []);
 });

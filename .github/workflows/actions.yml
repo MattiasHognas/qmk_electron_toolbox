@@ -25,8 +25,8 @@ jobs:
     - name: yarn install
       run: yarn install
     
-    - name: yarn build
-      run: yarn build
+    - name: yarn electron:build
+      run: yarn electron:build
     
     - name: yarn test
       run: yarn test
