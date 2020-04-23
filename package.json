@@ -27,8 +27,12 @@
 		}
 	},
 	"lint-staged": {
-		"*.*": [
-			"yarn lint",
+		"*.scss": [
+			"stylelint",
+			"git add"
+		],
+		"*.ts,*.tsx": [
+			"#:lint:code",
 			"yarn test:staged",
 			"git add"
 		]
