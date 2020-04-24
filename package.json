@@ -8,7 +8,7 @@
 	"private": true,
 	"scripts": {
 		"#:copy:externals": "copyfiles ./externals/**/* ./build/backend",
-		"#:lint:code": "tsc -p src --noEmit && yarn #:build:backend --noEmit && eslint ./src/**/*.{ts,tsx}",
+		"#:lint:code": "tsc -p . --noEmit && yarn #:build:backend --noEmit && eslint ./src/**/*.{ts,tsx}",
 		"#:lint:styles": "stylelint **/*.scss",
 		"#:build:frontend": "react-scripts build ./src",
 		"#:build:backend": "tsc -p src/backend",
@@ -60,6 +60,9 @@
 		]
 	},
 	"dependencies": {
+		"@material-ui/core": "^4.9.11",
+		"@material-ui/icons": "^4.9.1",
+		"@material-ui/styles": "^4.9.10",
 		"@types/electron-devtools-installer": "^2.2.0",
 		"@types/jest": "25.2.1",
 		"@types/node": "13.13.2",
@@ -73,7 +76,6 @@
 		"prop-types": "^15.7.2",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"react-md": "^1.16.1",
 		"react-scripts": "3.4.1",
 		"typescript": "3.8.3",
 		"webfontloader": "^1.6.28"
