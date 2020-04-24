@@ -4,7 +4,7 @@
 	"author": "Mattias Högnäs",
 	"description": "qmk electron toolbox",
 	"homepage": ".",
-	"main": "build/backend/Main.js",
+	"main": "build/backend/maina.js",
 	"private": true,
 	"scripts": {
 		"#:copy:externals": "copyfiles ./externals/**/* ./build/backend",
