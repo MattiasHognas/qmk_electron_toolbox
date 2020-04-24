@@ -19,7 +19,8 @@
 		"dev": "react-scripts start",
 		"electron:dev": "yarn #:copy:externals && concurrently \"cross-env BROWSER=none yarn dev\" \"wait-on http://localhost:3000 && yarn #:build:backend -w\" \"wait-on http://localhost:3000 && yarn #:build:backend && electron .\"",
 		"electron:build": "yarn #:build:frontend && yarn #:build:backend && yarn #:copy:externals && electron-builder",
-		"postinstall": "electron-builder install-app-deps"
+		"postinstall": "electron-builder install-app-deps",
+		"eject": "react-scripts eject"
 	},
 	"husky": {
 		"hooks": {
