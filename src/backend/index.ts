@@ -88,5 +88,5 @@ ipcMain.on('test-request', (event, message) => {
         }
     };
     event.sender.send('test-response', 'Main recieved message: ' + message);
-    avrdudeShell.execute('externals/win/avrdude.exe', onDataCallback, onErrorCallback, onCloseCallback, []);
+    avrdudeShell.execute('../externals/win/avrdude.exe', onDataCallback, onErrorCallback, onCloseCallback, []);
 });

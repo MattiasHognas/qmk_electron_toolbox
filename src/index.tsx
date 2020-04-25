@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as WebFontLoader from 'webfontloader';
 import './styles/index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import * as WebFontLoader from 'webfontloader';
 import { Bridge } from './types/Bridge';
 
 WebFontLoader.load({
     google: {
-        families: ['Roboto:300,400,500,700', 'Material Icons'],
+        families: ['Roboto:300,400,500,700', 'Material Icons', 'Lato'],
     },
 });
 
@@ -29,6 +29,6 @@ if (window.api === undefined) {
     window.api = mockBridge;
 }
 
-ReactDOM.render(<App simplifiedMenu={false} />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 serviceWorker.unregister();
