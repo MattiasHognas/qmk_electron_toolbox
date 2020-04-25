@@ -10,4 +10,5 @@ export interface AppState {
     Flashwhenready: boolean;
     Autoflash: boolean;
     Keyboards: string[];
+    KeymapHex: string;
 }

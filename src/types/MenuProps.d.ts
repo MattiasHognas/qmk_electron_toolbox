@@ -11,11 +11,9 @@ export interface MenuProps {
     Autoflash: boolean;
     Microcontrollers: string[];
     Keyboards: string[];
-    Keymaps: string[];
     HandleLocalfileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     HandleMicrocontrollerChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
     HandleKeyboardChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
-    HandleKeymapChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
     HandleDFUChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
     HandleHalfkayChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
     HandleSTM32Change: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;

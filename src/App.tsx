@@ -7,7 +7,6 @@ import Menu from './components/Menu';
 import Console from './components/Console';
 import Footer from './components/Footer';
 import Microcontrollers from './externals/common/microcontrollers.json';
-import Keymaps from './externals/common/keymaps.json';
 
 class App extends React.Component<AppProps, AppState> {
     constructor(props: AppProps) {
@@ -15,7 +14,6 @@ class App extends React.Component<AppProps, AppState> {
         this.setLocalfile = this.setLocalfile.bind(this);
         this.setMicrocontroller = this.setMicrocontroller.bind(this);
         this.setKeyboard = this.setKeyboard.bind(this);
-        this.setKeymap = this.setKeymap.bind(this);
         this.setDFU = this.setDFU.bind(this);
         this.setHalfkay = this.setHalfkay.bind(this);
         this.setSTM32 = this.setSTM32.bind(this);
@@ -36,13 +34,26 @@ class App extends React.Component<AppProps, AppState> {
             Flashwhenready: false,
             Autoflash: false,
             Keyboards: [],
+            KeymapHex: '',
         } as AppState;
     }
 
     componentDidMount(): void {
-        fetch('http://api.qmk.fm/v1/keyboards')
-            .then((response) => response.json())
-            .then((json: string[]) => this.setKeyboards(json));
+        this.getKeyboards().then((value) => this.setKeyboards(value));
+    }
+
+    async getKeyboards(): Promise<string[]> {
+        const response = await fetch('http://api.qmk.fm/v1/keyboards');
+        return await response.json();
+    }
+
+    // TODO: Probably do this on backend instead
+    async getKeymapHex(): Promise<string> {
+        console.log('first v', this.state.Keyboard);
+        const keymap = this.state.Keyboard.replace(/\//g, '_');
+        console.log('second v', keymap);
+        const response = await fetch(`https://qmk.fm/compiled/${keymap}_default.hex`);
+        return await response.text();
     }
 
     // componentDidMount(): void {
@@ -71,10 +82,6 @@ class App extends React.Component<AppProps, AppState> {
         this.setState({ Keyboard: event.target.value as string });
     }
 
-    setKeymap(event: React.ChangeEvent<{ value: unknown }>): void {
-        this.setState({ Keymap: event.target.value as string });
-    }
-
     setDFU(event: React.ChangeEvent<HTMLInputElement>, checked: boolean): void {
         this.setState({ DFU: checked });
     }
@@ -99,9 +106,13 @@ class App extends React.Component<AppProps, AppState> {
         this.setState({ Autoflash: checked });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     load(event: React.MouseEvent): void {
-        // TODO: implement
+        if (this.state.Keyboard) {
+            this.getKeymapHex().then((value) => {
+                this.setKeymapHex(value);
+                this.setState({ Keymap: 'default' });
+            });
+        }
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -116,6 +127,10 @@ class App extends React.Component<AppProps, AppState> {
 
     setKeyboards(values: string[]): void {
         this.setState({ Keyboards: values });
+    }
+
+    setKeymapHex(values: string): void {
+        this.setState({ KeymapHex: values });
     }
 
     render(): JSX.Element {
@@ -135,12 +150,10 @@ class App extends React.Component<AppProps, AppState> {
                     Autoflash={this.state.Autoflash}
                     Microcontrollers={Microcontrollers}
                     Keyboards={this.state.Keyboards}
-                    Keymaps={Keymaps}
                     HandleLocalfileChange={this.setLocalfile}
                     HandleMicrocontrollerChange={this.setMicrocontroller}
                     HandleDFUChange={this.setDFU}
                     HandleKeyboardChange={this.setKeyboard}
-                    HandleKeymapChange={this.setKeymap}
                     HandleHalfkayChange={this.setHalfkay}
                     HandleSTM32Change={this.setSTM32}
                     HandleCaterinaChange={this.setCaterina}

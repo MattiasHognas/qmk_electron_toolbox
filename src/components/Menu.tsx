@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid, Select, MenuItem, Checkbox } from '@material-ui/core';
+import { Button, Grid, Select, MenuItem, Checkbox, TextField } from '@material-ui/core';
 import { MenuProps } from '../types/MenuProps';
 import Upload from './Upload';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
@@ -55,22 +55,15 @@ function Menu(props: MenuProps): JSX.Element {
                     </Select>
                 </Grid>
                 <Grid item md={3}>
-                    <Select
-                        fullWidth
+                    <TextField
                         key="keymap"
                         placeholder="Keymap"
                         value={props.Keymap}
-                        onChange={props.HandleKeymapChange}
                         variant="outlined"
-                    >
-                        {props.Keymaps.map((item) => {
-                            return (
-                                <MenuItem key={item} value={item}>
-                                    {item}
-                                </MenuItem>
-                            );
-                        })}
-                    </Select>
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
                 </Grid>
                 <Grid item md={3}>
                     <Button variant="contained" color="secondary" onClick={props.HandleLoadClick}>
