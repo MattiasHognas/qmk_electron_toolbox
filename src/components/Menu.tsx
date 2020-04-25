@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Grid, Select, MenuItem, Checkbox } from '@material-ui/core';
 import { MenuProps } from '../types/MenuProps';
 import Upload from './Upload';
-import { AppContext } from '../App';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
@@ -15,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Menu(props: MenuProps): JSX.Element {
     const classes = useStyles();
-    const context = React.useContext(AppContext);
     return (
         <div className={classes.nav}>
             <Upload Callback={props.HandleLocalfileChange}></Upload>
@@ -25,7 +23,7 @@ function Menu(props: MenuProps): JSX.Element {
                         fullWidth
                         key="microcontroller"
                         placeholder="Microcontroller"
-                        value={context.Microcontroller}
+                        value={props.Microcontroller}
                         onChange={props.HandleMicrocontrollerChange}
                         variant="outlined"
                     >
@@ -43,7 +41,7 @@ function Menu(props: MenuProps): JSX.Element {
                         fullWidth
                         key="keyboard"
                         placeholder="Keyboard from qmk.fm"
-                        value={context.Keyboard}
+                        value={props.Keyboard}
                         onChange={props.HandleKeyboardChange}
                         variant="outlined"
                     >
@@ -61,7 +59,7 @@ function Menu(props: MenuProps): JSX.Element {
                         fullWidth
                         key="keymap"
                         placeholder="Keymap"
-                        value={context.Keymap}
+                        value={props.Keymap}
                         onChange={props.HandleKeymapChange}
                         variant="outlined"
                     >
@@ -87,9 +85,9 @@ function Menu(props: MenuProps): JSX.Element {
                         <Checkbox
                             name="dfu"
                             title="DFU"
-                            value={context.Keymap}
+                            value={props.Keymap}
                             onChange={props.HandleDFUChange}
-                            checked={context.DFU}
+                            checked={props.DFU}
                         />
                         <label>DFU</label>
                     </Grid>
@@ -98,17 +96,12 @@ function Menu(props: MenuProps): JSX.Element {
                             name="halfkay"
                             title="Halfkay"
                             onChange={props.HandleHalfkayChange}
-                            checked={context.Halfkay}
+                            checked={props.Halfkay}
                         />
                         <label>Halfkay</label>
                     </Grid>
                     <Grid item>
-                        <Checkbox
-                            name="stm32"
-                            title="STM32"
-                            onChange={props.HandleSTM32Change}
-                            checked={context.STM32}
-                        />
+                        <Checkbox name="stm32" title="STM32" onChange={props.HandleSTM32Change} checked={props.STM32} />
                         <label>STM32</label>
                     </Grid>
                     <Grid item>
@@ -116,7 +109,7 @@ function Menu(props: MenuProps): JSX.Element {
                             name="caterina"
                             title="Caterina"
                             onChange={props.HandleCaterinaChange}
-                            checked={context.Caterina}
+                            checked={props.Caterina}
                         />
                         <label>Caterina</label>
                     </Grid>
@@ -125,7 +118,7 @@ function Menu(props: MenuProps): JSX.Element {
                             name="flashwhenready"
                             title="Flashwhenready"
                             onChange={props.HandleFlashwhenreadyChange}
-                            checked={context.Flashwhenready}
+                            checked={props.Flashwhenready}
                         />
                         <label>Flash when ready</label>
                     </Grid>
@@ -134,7 +127,7 @@ function Menu(props: MenuProps): JSX.Element {
                             name="autoflash"
                             title="Autoflash"
                             onChange={props.HandleAutoflashChange}
-                            checked={context.Autoflash}
+                            checked={props.Autoflash}
                         />
                         <label>Auto flash</label>
                     </Grid>

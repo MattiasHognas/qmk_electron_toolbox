@@ -9,4 +9,5 @@ export interface AppState {
     Caterina: boolean;
     Flashwhenready: boolean;
     Autoflash: boolean;
+    Keyboards: string[];
 }
