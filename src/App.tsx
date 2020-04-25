@@ -6,9 +6,9 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import Console from './components/Console';
 import Footer from './components/Footer';
-// import Microcontrollers from '../externals/common/microcontrollers.json';
-// import Keyboards from '../externals/common/keyboards.json';
-// import Keymaps from '../externals/common/keymaps.json';
+import Microcontrollers from './externals/common/microcontrollers.json';
+import Keyboards from './externals/common/keyboards.json';
+import Keymaps from './externals/common/keymaps.json';
 
 const initialState: AppState = {
     LocalFile: '',
@@ -25,54 +25,6 @@ const initialState: AppState = {
 export const AppContext: React.Context<AppState> = React.createContext<AppState>(initialState);
 
 export class App extends React.Component<AppProps, AppState> {
-    Microcontrollers: string[];
-    Keyboards: string[];
-    Keymaps: string[];
-
-    constructor(props: AppProps) {
-        super(props);
-
-        // TODO: Move to service, load from file?
-        this.Microcontrollers = [
-            'at90usb1286',
-            'at90usb1287',
-            'at90usb646',
-            'at90usb647',
-            'atmega16u2',
-            'atmega16u4',
-            'atmega328p',
-            'atmega32a',
-            'atmega32u2',
-            'atmega32u4',
-        ];
-        // TODO: Move to service, load from file?
-        this.Keyboards = [
-            'at90usb1286',
-            'at90usb1287',
-            'at90usb646',
-            'at90usb647',
-            'atmega16u2',
-            'atmega16u4',
-            'atmega328p',
-            'atmega32a',
-            'atmega32u2',
-            'atmega32u4',
-        ];
-        // TODO: Move to service, load from file?
-        this.Keymaps = [
-            'at90usb1286',
-            'at90usb1287',
-            'at90usb646',
-            'at90usb647',
-            'atmega16u2',
-            'atmega16u4',
-            'atmega328p',
-            'atmega32a',
-            'atmega32u2',
-            'atmega32u4',
-        ];
-    }
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setLocalfile(event: React.ChangeEvent<HTMLInputElement>): void {
         this.setState({ LocalFile: event.target.value as string });
@@ -148,9 +100,9 @@ export class App extends React.Component<AppProps, AppState> {
             <div>
                 <Header />
                 <Menu
-                    Microcontrollers={this.Microcontrollers}
-                    Keyboards={this.Keyboards}
-                    Keymaps={this.Keymaps}
+                    Microcontrollers={Microcontrollers}
+                    Keyboards={Keyboards}
+                    Keymaps={Keymaps}
                     HandleLocalfileChange={this.setLocalfile}
                     HandleMicrocontrollerChange={this.setMicrocontroller}
                     HandleDFUChange={this.setDFU}

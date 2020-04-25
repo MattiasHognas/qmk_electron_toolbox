@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as WebFontLoader from 'webfontloader';
 import './styles/index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import * as WebFontLoader from 'webfontloader';
 import { Bridge } from './types/Bridge';
 
 WebFontLoader.load({
