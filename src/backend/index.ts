@@ -7,25 +7,25 @@ import { avrdudeShell } from './AvrdudeShell';
 let win: BrowserWindow | null = null;
 
 function createWindow(): void {
-    win = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
-            enableRemoteModule: false,
-            preload: path.join(__dirname, 'Preload.js'),
+            preload: path.join(__dirname, 'preload.js'),
         },
         autoHideMenuBar: true,
     });
+    win = mainWindow;
 
     if (isDev) {
-        win.loadURL('http://localhost:3000/index.html');
+        mainWindow.loadURL('http://localhost:3000/index.html');
     } else {
-        win.loadURL(`file://${__dirname}/../index.html`);
+        mainWindow.loadURL(`file://${__dirname}/../index.html`);
     }
 
-    win.on('closed', () => (win = null));
+    mainWindow.on('closed', () => (win = null));
 
     // Hot Reloading
     if (isDev) {
@@ -44,7 +44,7 @@ function createWindow(): void {
         .catch((err) => console.log('An error occurred: ', err));
 
     if (isDev) {
-        win.webContents.openDevTools();
+        mainWindow.webContents.openDevTools();
     }
 }
 

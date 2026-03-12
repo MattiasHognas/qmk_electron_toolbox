@@ -30,7 +30,7 @@ class AvrdudeShell implements Shell {
             });
         }
         child.on('close', (code) => {
-            onClose(code);
+            onClose(code ?? 0);
         });
     }
 }
