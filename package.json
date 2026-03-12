@@ -7,18 +7,18 @@
   "main": "build/backend/index.js",
   "private": true,
   "scripts": {
-    "#:copy:externals": "copyfiles ./src/externals/**/* ./build",
-    "#:lint:code": "tsc -p . --noEmit && yarn #:build:backend --noEmit && eslint ./src/**/*.{ts,tsx}",
-    "#:lint:styles": "stylelint **/*.scss",
-    "#:build:frontend": "node scripts/build.js ./src",
-    "#:build:backend": "tsc -p src/backend",
+    "copy:externals": "copyfiles ./src/externals/**/* ./build",
+    "lint:code": "tsc -p . --noEmit && yarn build:backend --noEmit && eslint ./src/**/*.{ts,tsx}",
+    "lint:styles": "stylelint **/*.scss",
+    "build:frontend": "cross-env NODE_OPTIONS=--openssl-legacy-provider node scripts/build.js ./src",
+    "build:backend": "tsc -p src/backend",
     "cleanup": "rimraf node_modules && rimraf dist && rimraf build",
-    "lint": "yarn #:lint:code && yarn #:lint:styles",
+    "lint": "yarn lint:code && yarn lint:styles",
     "test": "node scripts/test.js --coverage",
     "test:staged": "cross-env CI=true node scripts/test.js --coverage",
-    "dev": "node scripts/start.js",
-    "electron:dev": "yarn #:copy:externals && concurrently \"cross-env BROWSER=none yarn dev\" \"wait-on http://localhost:3000 && yarn #:build:backend -w\" \"wait-on http://localhost:3000 && yarn #:build:backend && electron .\"",
-    "electron:build": "yarn #:build:frontend && yarn #:build:backend && yarn #:copy:externals && electron-builder",
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider node scripts/start.js",
+    "electron:dev": "yarn copy:externals && concurrently \"cross-env BROWSER=none yarn dev\" \"wait-on http://localhost:3000 && yarn build:backend -w\" \"wait-on http://localhost:3000 && yarn build:backend && electron .\"",
+    "electron:build": "yarn build:frontend && yarn build:backend && yarn copy:externals && electron-builder",
     "postinstall": "electron-builder install-app-deps"
   },
   "husky": {
@@ -32,7 +32,7 @@
       "git add"
     ],
     "*.ts,*.tsx": [
-      "#:lint:code",
+      "yarn lint:code",
       "yarn test:staged",
       "git add"
     ]
